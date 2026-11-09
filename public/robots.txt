@@ -1,0 +1,6 @@
+# robots.txt for Virginia HomeCraft
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://virginiahomecraft.com/sitemap.xml

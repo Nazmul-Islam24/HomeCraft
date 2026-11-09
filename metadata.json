@@ -1,0 +1,7 @@
+{
+  "name": "Virginia HomeCraft - Home Remodeling & Renovation",
+  "description": "Premier residential home improvement, remodeling, painting, and flooring contractor in Arlington, Virginia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

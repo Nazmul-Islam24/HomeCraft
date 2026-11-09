@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #142B3A;
+    --color-primary-dark: #0D1C26;
+    --color-primary-light: #1D3D52;
+    --color-bg-warm: #F7F4EE;
+    --color-accent: #D96B32;
+    --color-accent-hover: #BF5A24;
+    --color-accent-soft: #FDEEE6;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--color-bg-warm);
+    color: var(--color-primary);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom utility styles */
+.font-heading {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Smooth focus rings for accessibility */
+*:focus-visible {
+  outline: 2px solid #D96B32;
+  outline-offset: 2px;
+}
+
+/* Slide in from left for mobile menu drawer */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Infinite continuous marquee animation for reviews (slower relaxed speed) */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 70s linear infinite;
+}
+
+/* Continuous right-to-left ticker for stats and services (slower relaxed speed) */
+@keyframes ticker-rtl {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker-continuous {
+  display: flex;
+  width: max-content;
+  animation: ticker-rtl 65s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover, active touch, or mouse down */
+.pause-on-hover:hover,
+.pause-on-hover:active,
+.pause-on-hover.is-paused {
+  animation-play-state: paused !important;
+}
+
+/* Hide scrollbars cleanly */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Prevent layout shift & image rendering */
+img {
+  content-visibility: auto;
+}
+
+/* Compact subtle radiation / sonar signal wave pulse - strictly contained within navbar padding */
+@keyframes radiation-signal {
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+    box-shadow: 0 0 0 0 rgba(217, 107, 50, 0.6);
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(1.26);
+    opacity: 0;
+    box-shadow: 0 0 0 3px rgba(217, 107, 50, 0);
+  }
+}
+
+.radiation-pulse {
+  position: absolute;
+  inset: -1px;
+  border-radius: 9999px;
+  background-color: rgba(217, 107, 50, 0.4);
+  border: 1.5px solid #D96B32;
+  pointer-events: none;
+  animation: radiation-signal 2.2s cubic-bezier(0.2, 0.8, 0.35, 1) infinite;
+  z-index: 0;
+}
+
+.radiation-pulse-2 {
+  animation-delay: 1.1s;
+}
+
+/* Scroll Reveal Animations: Coming smoothly from the sides/outside and settling cleanly */
+.reveal,
+.reveal-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed,
+.reveal-up.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-56px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(56px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger transition delay helpers */
+.delay-75 { transition-delay: 75ms; }
+.delay-150 { transition-delay: 150ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .radiation-pulse {
+    display: none !important;
+  }
+}
+
